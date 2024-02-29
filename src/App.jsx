@@ -5,6 +5,7 @@ import Home from './views/Home'
 import Pokemons from './views/Pokemons'
 import NotFound from './views/NotFound'
 import PokeProvider from './context/PokeContext'
+import PokemonInfo from './views/PokemonInfo'
 
 
 
@@ -21,6 +22,10 @@ function App() {
         <Route
           path="/pokemons"
           element={<Pokemons />}
+        />
+        <Route
+          path="/pokemons/:id"
+          element={<PokemonInfo />}
         />
         <Route
           path="*"
