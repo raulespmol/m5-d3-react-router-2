@@ -18,20 +18,28 @@ const Pokemons = () => {
     }
   }
 
+  const formatName = nombre => {
+    return nombre[0].toUpperCase() + nombre.slice(1)
+  }
+
   return (
     <div>
-      <select onChange={handleChange}>
-        {pokes.map((poke) => {
+      <select onChange={handleChange} defaultValue="">
+        <option value="" disabled>Selecciona un Pokemon</option>
+        {pokes ?
+        pokes.map((poke) => {
           const {name} = poke
           return (
             <option
               key={name}
               value={name}
             >
-              {name}
+              {formatName(name)}
             </option>
           )
-        } )}
+        } ) : (
+          <option disabled>Cargando...</option>
+        )}
       </select>
       <button onClick={handleClick}>Ver detalles</button>
     </div>

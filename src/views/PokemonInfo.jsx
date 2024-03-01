@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 
 const PokemonInfo = () => {
-  const [PokeInfo, setPokeInfo] = useState({})
+  const [pokeInfo, setPokeInfo] = useState({})
   const navigate = useNavigate()
   const { name } = useParams()
 
@@ -19,12 +19,32 @@ const PokemonInfo = () => {
   }
 
   useEffect(() => {
-    getPokeInfo
+    getPokeInfo()
   })
 
   return (
     <>
-      <div>PokemonInfo {name}</div>
+      <h2>Pokemon Info {pokeInfo.name}</h2>
+      {pokeInfo ? (
+        <div>
+          <figure>
+            <img src={pokeInfo.sprites.other.home.front_default} alt="" />
+          </figure>
+          <div>
+            <ul>
+              {/* { pokeInfo.stats.map( (s, index) => {
+                return (
+                  <li key={index}>
+                    {s.stat.name}: {s.base_stat}
+                  </li>
+                )}
+              )} */}
+            </ul>
+          </div>
+        </div>
+      ) : (
+        'Cargando...'
+      )}
       <button onClick={handleClick}>Volver</button>
     </>
   )
