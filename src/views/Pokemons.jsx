@@ -22,12 +22,13 @@ const Pokemons = () => {
     <div>
       <select onChange={handleChange}>
         {pokes.map((poke) => {
+          const {name} = poke
           return (
             <option
-              key={poke.entry_number}
-              value={poke.entry_number}
+              key={name}
+              value={name}
             >
-              {poke.pokemon_species.name}
+              {name}
             </option>
           )
         } )}

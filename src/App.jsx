@@ -24,7 +24,7 @@ function App() {
           element={<Pokemons />}
         />
         <Route
-          path="/pokemons/:id"
+          path="/pokemons/:name"
           element={<PokemonInfo />}
         />
         <Route

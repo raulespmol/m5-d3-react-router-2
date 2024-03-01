@@ -6,10 +6,10 @@ const PokeProvider = ({children}) => {
   const [pokes, setPokes] = useState([])
 
   const getPokes = () => {
-    const url = 'https://pokeapi.co/api/v2/pokedex/2/'
+    const url = 'https://pokeapi.co/api/v2/pokemon?limit=151'
     fetch(url)
     .then(response => response.json())
-    .then(data => setPokes(data.pokemon_entries))
+    .then(data => setPokes(data.results))
   }
 
   useEffect(() => {
