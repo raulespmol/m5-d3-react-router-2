@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import PokeCard from "../components/PokeCard"
 
 
 const PokemonInfo = () => {
   const [pokeInfo, setPokeInfo] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
   const { name } = useParams()
 
@@ -11,43 +13,33 @@ const PokemonInfo = () => {
     navigate('/pokemons')
   }
 
-  const getPokeInfo = () => {
+  const getPokeInfo = async () => {
     const url = `https://pokeapi.co/api/v2/pokemon/${name}`
-    fetch(url)
-    .then(response => response.json())
-    .then(data => setPokeInfo(data))
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      setPokeInfo(data)
+      setIsLoading(false)
+    } catch(error) {
+      console.log('Error al consultar la API', error);
+    }
   }
 
   useEffect(() => {
     getPokeInfo()
-  })
+  }, [])
 
-  return (
-    <>
-      <h2>Pokemon Info {pokeInfo.name}</h2>
-      {pokeInfo ? (
-        <div>
-          <figure>
-            <img src={pokeInfo.sprites.other.home.front_default} alt="" />
-          </figure>
-          <div>
-            <ul>
-              {/* { pokeInfo.stats.map( (s, index) => {
-                return (
-                  <li key={index}>
-                    {s.stat.name}: {s.base_stat}
-                  </li>
-                )}
-              )} */}
-            </ul>
-          </div>
-        </div>
-      ) : (
-        'Cargando...'
-      )}
-      <button onClick={handleClick}>Volver</button>
-    </>
-  )
+  if(isLoading){
+    return <h3>Cargando...</h3>
+  } else {
+    return (
+      <>
+        <h2>{pokeInfo.name}</h2>
+        <PokeCard pokemon={pokeInfo}/>
+        <button onClick={handleClick}>Volver</button>
+      </>
+    )
+  }
 }
 
 export default PokemonInfo
