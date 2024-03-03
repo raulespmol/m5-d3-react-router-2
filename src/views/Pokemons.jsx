@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { PokeContext } from "../context/PokeContext"
 import { useNavigate } from "react-router-dom"
+import { Button } from "react-bootstrap"
 
 const Pokemons = () => {
   const {pokes} = useContext(PokeContext)
@@ -23,7 +24,7 @@ const Pokemons = () => {
   }
 
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center mt-5 gap-3">
       <select onChange={handleChange} defaultValue="">
         <option value="" disabled>Selecciona un Pokemon</option>
         {pokes ?
@@ -41,7 +42,7 @@ const Pokemons = () => {
           <option disabled>Cargando...</option>
         )}
       </select>
-      <button onClick={handleClick}>Ver detalles</button>
+      <Button variant="dark" onClick={handleClick}>Ver detalles</Button>
     </div>
   )
 }

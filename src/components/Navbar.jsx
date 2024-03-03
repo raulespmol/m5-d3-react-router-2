@@ -5,7 +5,7 @@ const Navbar = () => {
 
 	return (
 		<nav>
-      <div>
+      <div className='d-flex gap-2'>
         <NavLink to="/" className={setActiveClass}>
           Inicio
         </NavLink>
