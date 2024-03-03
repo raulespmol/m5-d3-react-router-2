@@ -5,6 +5,10 @@ const PokeCard = ({pokemon}) => {
   const formatName = nombre => {
     return nombre[0].toUpperCase() + nombre.slice(1)
   }
+  
+
+  const {stats} = pokemon
+  const types = pokemon.types.map(t => t.type.name)
 
   return (
     <div>
@@ -18,7 +22,7 @@ const PokeCard = ({pokemon}) => {
           </Card.Header>
           <Card.Body>
             <ul>
-              {pokemon.stats.map( (s, index) => {
+              {stats.map( (s, index) => {
                 return (
                   <li key={index}>
                     {s.stat.name}: {s.base_stat}
@@ -29,7 +33,7 @@ const PokeCard = ({pokemon}) => {
           </Card.Body>
           <Card.Footer>
             <small className="text-muted">
-              {pokemon.types.map( t => t.type.name )}
+              {types.map( type => formatName(type) + ' ')}
             </small>
           </Card.Footer>
         </Card>

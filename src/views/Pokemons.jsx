@@ -25,8 +25,9 @@ const Pokemons = () => {
 
   return (
     <div className="d-flex flex-column align-items-center mt-5 gap-3">
+      <h1>Selecciona un Pokemon</h1>
       <select onChange={handleChange} defaultValue="">
-        <option value="" disabled>Selecciona un Pokemon</option>
+        <option value="" disabled>Pokemons</option>
         {pokes ?
         pokes.map((poke) => {
           const {name} = poke
